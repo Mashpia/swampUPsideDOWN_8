@@ -18,8 +18,8 @@ jobs:
       continue-on-error: true
       env:
         URL: ${{env.API_URL}}
-        USER: ${{ secrets.USER }}
-        PW: ${{ secrets.USER_CRED }}
+        USER: ${{secrets.USER}}
+        PW: ${{secrets.USER_CRED}}
       run: |
         echo "Login health check"
         echo "test"
@@ -29,8 +29,8 @@ jobs:
       continue-on-error: true
       env:
         URL: ${{env.API_URL}}
-        USER: ${{ secrets.USER }}
-        PW: ${{ secrets.USER_CRED }}
+        USER: ${{secrets.USER}}
+        PW: ${{secrets.USER_CRED}}
       run: |
         echo "Send run log"
         curl --connect-timeout 2 -sSf -k -u "$USER:$PW" $URL/api/run/audit
@@ -46,10 +46,10 @@ jobs:
 
     - name: backport_assign_check
       env:
-        PR_NUMBER: ${{ github.event.pull_request.number }}
+        PR_NUMBER: ${{github.event.pull_request.number}}
         URL: ${{env.API_URL}}
-        USER: ${{ secrets.USER }}
-        PW: ${{ secrets.USER_CRED }}
+        USER: ${{secrets.USER }}
+        PW: ${{secrets.USER_CRED }}
       run: |
         PR="${{ github.event.pull_request.body }}"
         echo $PR | grep -oP '\(backport #\K\d+' | tail -n 1)
